@@ -1,0 +1,15 @@
+{
+  "defaultEnviroment": "test",
+  "enviroments": {
+    "test": {
+      "url": "https://petstore.swagger.io/v2",
+      "username": "admin",
+      "password":  "admin"
+    },
+    "acceptance": {
+      "url": "https://petstore.swagger.io/v2",
+      "username": "admin2",
+      "password": "admin2"
+    }
+  }
+}
