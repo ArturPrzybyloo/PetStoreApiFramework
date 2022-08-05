@@ -12,12 +12,17 @@ namespace PetStoreApiFramework.Utils
             var response = client.Execute(request);
             var jsonLog = new JObject
             {
-                {  "request", new JObject
+                {"request", new JObject
                 {
-                    {"path", response.Request.Resource },
-                    {"url", response.ResponseUri },
-                    {"method", response.Request.Method.ToString()},
-                    {"body", FormatJson(jsonString: Convert.ToString(response.Content))},
+                    {"requestUrl", response.Request.Resource },
+                    { "method", response.Request.Method.ToString() },
+                    {"requestBody", FormatJson(JsonConvert.SerializeObject(response.Request.Parameters.GetParameters(ParameterType.RequestBody))) }
+                }
+                },
+                {  "response", new JObject
+                {
+                    {"responseUrl", response.ResponseUri },
+                    {"responseBody", FormatJson(jsonString: Convert.ToString(response.Content))},
                 }
                 }
             };
