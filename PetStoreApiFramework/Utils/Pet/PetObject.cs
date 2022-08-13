@@ -5,7 +5,7 @@ using System.Net;
 
 namespace PetStoreApiFramework.Utils.Pet
 {
-    public class Pet
+    public class PetObject
     {
         // Id of pet
         public int? Id { get; set; }
@@ -20,7 +20,7 @@ namespace PetStoreApiFramework.Utils.Pet
         // Status of pet
         public string Status { get; set; }
 
-        public Pet GetDeafult()
+        public PetObject GetDeafult()
         {
             var defaultPet = TestData.Read<PetDto>("DefaultPet");
             Id = defaultPet.Id;
@@ -32,21 +32,21 @@ namespace PetStoreApiFramework.Utils.Pet
             return this;
         }
 
-        public Pet SetPetData(string name,  string status = "active")
+        public PetObject SetPetData(string name,  string status = "active")
         {
             Name = name;
             Status = status;
             return this;
         }
 
-        public Pet SetCategory(string name, int? id = null)
+        public PetObject SetCategory(string name, int? id = null)
         {
             Category.Name = name;
             Category.Id = id;
             return this;
         }
 
-        public Pet AddTag(string name, int? id = null)
+        public PetObject AddTag(string name, int? id = null)
         {
             Tags.Add(new TagDto { 
                 Name = name, 
@@ -55,13 +55,13 @@ namespace PetStoreApiFramework.Utils.Pet
             return this;
         }
 
-        public Pet AddPhotoUrl(string url)
+        public PetObject AddPhotoUrl(string url)
         {
             PhotoUrls.Add(url);
             return this;
         }
 
-        public Pet Create(int? id = null, HttpStatusCode statusCode = HttpStatusCode.OK)
+        public PetObject Create(int? id = null, HttpStatusCode statusCode = HttpStatusCode.OK)
         {
             Id = id;
             var response = RequestsPet.CreatePet(this, statusCode).Deserialize<PetDto>();
@@ -69,20 +69,20 @@ namespace PetStoreApiFramework.Utils.Pet
             return this;
         }
 
-        public Pet Get(HttpStatusCode statusCode = HttpStatusCode.OK)
+        public PetObject Get(HttpStatusCode statusCode = HttpStatusCode.OK)
         {
             RequestsPet.GetPetById(Id.GetValueOrDefault(), statusCode);
             return this;
         }
 
-        public Pet Update(HttpStatusCode statusCode = HttpStatusCode.OK)
+        public PetObject Update(HttpStatusCode statusCode = HttpStatusCode.OK)
         {
             var response = RequestsPet.UpdatePet(this, statusCode).Deserialize<PetDto>();
             Id = response.Id;
             return this;
         }
 
-        public Pet Delete(HttpStatusCode statusCode = HttpStatusCode.OK)
+        public PetObject Delete(HttpStatusCode statusCode = HttpStatusCode.OK)
         {
             RequestsPet.DeletePet(Id.GetValueOrDefault(), statusCode);
             return this;

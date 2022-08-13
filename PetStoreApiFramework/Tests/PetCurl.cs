@@ -15,7 +15,7 @@ namespace PetStoreApiFramework.Tests
         public void CrudTest()
         {
             // Create pet object
-            var pet = new Pet();
+            var pet = new PetObject();
 
             // Get default pet data
             pet.GetDeafult();
