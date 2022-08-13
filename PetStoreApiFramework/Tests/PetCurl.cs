@@ -1,16 +1,16 @@
-﻿using FluentAssertions;
+﻿using NUnit.Allure.Attributes;
+using NUnit.Allure.Core;
 using NUnit.Framework;
-using PetStoreApiFramework.Dto;
-using PetStoreApiFramework.Requests;
-using PetStoreApiFramework.Utils;
 using PetStoreApiFramework.Utils.Pet;
 using System.Net;
 
 namespace PetStoreApiFramework.Tests
 {
-    
+    [AllureNUnit]
+    [AllureSuite("Pet Tests")]
     public class PetCurl : TestBase
     {
+
         [TestCase]
         public void CrudTest()
         {
