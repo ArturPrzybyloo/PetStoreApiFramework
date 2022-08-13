@@ -5,6 +5,8 @@ using PetStoreApiFramework.Utils;
 using RestSharp;
 using System.Collections.Generic;
 using System.Net;
+using PetStoreApiFramework.Utils.User;
+using System;
 
 namespace PetStoreApiFramework.Requests.User
 {
@@ -23,9 +25,18 @@ namespace PetStoreApiFramework.Requests.User
             }
         }
 
-        public static RestResponse CreateUsersWithArray(UserDto[] userDtoArray, HttpStatusCode httpStatusCode = HttpStatusCode.OK)
+        public static RestResponse CreateUsersWithArray(UserObject[] userDtoArray, HttpStatusCode httpStatusCode = HttpStatusCode.OK)
         {
             var request = EndpointsUser.CreateUsersWithArray.AddJsonBody(userDtoArray);
+
+            var response = Client.ExecuteWithLogs(request);
+            response.StatusCode.Should().Be(httpStatusCode);
+            return response;
+        }
+
+        public static RestResponse CreateUsersWithList(List<UserObject> userDtoList, HttpStatusCode httpStatusCode = HttpStatusCode.OK)
+        {
+            var request = EndpointsUser.CreateUsersWithArray.AddJsonBody(userDtoList);
 
             var response = Client.ExecuteWithLogs(request);
             response.StatusCode.Should().Be(httpStatusCode);
@@ -60,6 +71,16 @@ namespace PetStoreApiFramework.Requests.User
             return response;
         }
 
+        public static RestResponse UpdateUserWithName(string userName, UserObject userDto, HttpStatusCode httpStatusCode = HttpStatusCode.OK)
+        {
+            var request = EndpointsUser.UpdateUserByName.AddUrlSegment("username", userName)
+                .AddBody(userDto);
+
+            var response = Client.ExecuteWithLogs(request);
+            response.StatusCode.Should().Be(httpStatusCode);
+            return response;
+        }
+
         public static RestResponse DeleteUserWithName(string userName, HttpStatusCode httpStatusCode = HttpStatusCode.OK)
         {
             var request = EndpointsUser.DeleteUserByName.AddUrlSegment("username", userName);
@@ -71,7 +92,8 @@ namespace PetStoreApiFramework.Requests.User
 
         public static RestResponse LoginUser(string userName, string password, HttpStatusCode httpStatusCode = HttpStatusCode.OK)
         {
-            var request = EndpointsUser.LoginUser.AddParameter(userName, password);
+            var request = EndpointsUser.LoginUser.AddParameter("username", userName)
+                .AddParameter("password", password);
 
             var response = Client.ExecuteWithLogs(request);
             response.StatusCode.Should().Be(httpStatusCode);
@@ -87,9 +109,18 @@ namespace PetStoreApiFramework.Requests.User
             return response;
         }
 
-        public static RestResponse CreateUser(UserDto userDto, HttpStatusCode httpStatusCode = HttpStatusCode.OK)
+        public static RestResponse CreateUser(UserObject user, HttpStatusCode httpStatusCode = HttpStatusCode.OK)
         {
-            var request = EndpointsUser.CreateUser.AddBody(userDto);
+            var request = EndpointsUser.CreateUser.AddBody(user);
+
+            var response = Client.ExecuteWithLogs(request);
+            response.StatusCode.Should().Be(httpStatusCode);
+            return response;
+        }
+
+        public static RestResponse CreateUser(UserDto user, HttpStatusCode httpStatusCode = HttpStatusCode.OK)
+        {
+            var request = EndpointsUser.CreateUser.AddBody(user);
 
             var response = Client.ExecuteWithLogs(request);
             response.StatusCode.Should().Be(httpStatusCode);

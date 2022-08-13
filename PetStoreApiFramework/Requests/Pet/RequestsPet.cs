@@ -40,7 +40,7 @@ namespace PetStoreApiFramework.Requests
             return response;
         }
 
-        public static RestResponse CreatePet(Pet petObject, HttpStatusCode httpStatusCode = HttpStatusCode.OK)
+        public static RestResponse CreatePet(PetObject petObject, HttpStatusCode httpStatusCode = HttpStatusCode.OK)
         {
             var request = EndpointsPet.CreatePet.AddJsonBody(petObject);
 
@@ -58,7 +58,7 @@ namespace PetStoreApiFramework.Requests
             return response;
         }
 
-        public static RestResponse UpdatePet(Pet petObject, HttpStatusCode httpStatusCode = HttpStatusCode.OK)
+        public static RestResponse UpdatePet(PetObject petObject, HttpStatusCode httpStatusCode = HttpStatusCode.OK)
         {
             var request = EndpointsPet.UpdatePet.AddJsonBody(petObject);
 
