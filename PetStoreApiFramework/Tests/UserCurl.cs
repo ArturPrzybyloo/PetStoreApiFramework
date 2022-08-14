@@ -16,7 +16,7 @@ namespace PetStoreApiFramework.Tests
             UserObject user = new UserObject();
             user.GetDeafult();
             
-            user.Username = "BLEBLA12112121aa1xasas";
+            user.Username = "tstststs";
 
             user.Create();
 
@@ -37,6 +37,7 @@ namespace PetStoreApiFramework.Tests
 
             user.Password = "saaasaasas";
             user.Login();
+            user.Logout();
 
        
         }

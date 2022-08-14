@@ -102,7 +102,8 @@ namespace PetStoreApiFramework.Requests.User
 
         public static RestResponse LogoutUser(string userName, string password, HttpStatusCode httpStatusCode = HttpStatusCode.OK)
         {
-            var request = EndpointsUser.LogoutUser.AddParameter(userName, password);
+            var request = EndpointsUser.LogoutUser.AddParameter("username", userName)
+                .AddParameter("password", password);
 
             var response = Client.ExecuteWithLogs(request);
             response.StatusCode.Should().Be(httpStatusCode);

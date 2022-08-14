@@ -2,6 +2,7 @@
 using PetStoreApiFramework.Configuration;
 using PetStoreApiFramework.Dto.Store;
 using PetStoreApiFramework.Utils;
+using PetStoreApiFramework.Utils.Store;
 using RestSharp;
 using System;
 using System.Net;
@@ -23,7 +24,7 @@ namespace PetStoreApiFramework.Requests.Store
             }
         }
 
-        public static RestResponse GetOrderById(int orderId, HttpStatusCode httpStatusCode = HttpStatusCode.OK)
+        public static RestResponse GetOrderById(long orderId, HttpStatusCode httpStatusCode = HttpStatusCode.OK)
         {
             var request = EndpointsStore.GetOrder.AddUrlSegment("orderId", orderId);
 
@@ -41,7 +42,16 @@ namespace PetStoreApiFramework.Requests.Store
             return response;
         }
 
-        public static RestResponse DeleteOrderById(int orderId, HttpStatusCode httpStatusCode = HttpStatusCode.OK)
+        public static RestResponse CreateOrder(OrderObject orderDto, HttpStatusCode httpStatusCode = HttpStatusCode.OK)
+        {
+            var request = EndpointsStore.PlaceOrder.AddBody(orderDto);
+
+            var response = Client.ExecuteWithLogs(request);
+            response.StatusCode.Should().Be(httpStatusCode);
+            return response;
+        }
+
+        public static RestResponse DeleteOrderById(long orderId, HttpStatusCode httpStatusCode = HttpStatusCode.OK)
         {
             var request = EndpointsStore.DeleteOrder.AddUrlSegment("orderId", orderId);
 
