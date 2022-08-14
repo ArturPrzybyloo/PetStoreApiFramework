@@ -102,12 +102,26 @@ namespace PetStoreApiFramework.Utils.User
         public UserObject Login(bool inccorectPasswordOrUsername = false, HttpStatusCode statusCode = HttpStatusCode.OK)
         {
             var response = RequestsUser.LoginUser(Username, Password, statusCode).Deserialize<ApiResponseDto>();
-            if (!inccorectPasswordOrUsername)
+            if (inccorectPasswordOrUsername)
             {
                 response.Message.Should().Contain("Invalid username/password supplied");
             } else
             {
                 response.Message.Should().Contain("logged in user session");
+            }
+            return this;
+        }
+
+        public UserObject Logout(bool inccorectPasswordOrUsername = false, HttpStatusCode statusCode = HttpStatusCode.OK)
+        {
+            var response = RequestsUser.LogoutUser(Username, Password, statusCode).Deserialize<ApiResponseDto>();
+            if (inccorectPasswordOrUsername)
+            {
+                response.Message.Should().Contain("Invalid username/password supplied");
+            }
+            else
+            {
+                response.Message.Should().Contain("ok");
             }
             return this;
         }

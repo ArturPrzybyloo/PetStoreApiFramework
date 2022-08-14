@@ -2,6 +2,7 @@
 using NUnit.Allure.Core;
 using NUnit.Framework;
 using PetStoreApiFramework.Utils.Pet;
+using PetStoreApiFramework.Utils.Store;
 using System.Net;
 
 namespace PetStoreApiFramework.Tests
@@ -45,7 +46,20 @@ namespace PetStoreApiFramework.Tests
 
             // Get after delete
             pet.Get(HttpStatusCode.NotFound);
+        }
 
+        [TestCase]
+        public void Store()
+        {
+            OrderObject order = new OrderObject();
+
+            order.GetDefault().Create();
+
+            order.Get();
+
+            order.Delete();
+
+            order.Get(HttpStatusCode.NotFound);
 
         }
     }
