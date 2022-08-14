@@ -22,7 +22,7 @@ namespace PetStoreApiFramework.Requests
             }
         }
 
-        public static RestResponse GetPetById(int petId, HttpStatusCode httpStatusCode = HttpStatusCode.OK)
+        public static RestResponse GetPetById(long petId, HttpStatusCode httpStatusCode = HttpStatusCode.OK)
         {
             var request = EndpointsPet.GetByPetId.AddUrlSegment("petId", petId);
 
@@ -67,7 +67,7 @@ namespace PetStoreApiFramework.Requests
             return response;
         }
 
-        public static RestResponse DeletePet(int petId, HttpStatusCode httpStatusCode = HttpStatusCode.OK)
+        public static RestResponse DeletePet(long petId, HttpStatusCode httpStatusCode = HttpStatusCode.OK)
         {
             var request = EndpointsPet.DeletePet.AddUrlSegment("petId", petId);
 

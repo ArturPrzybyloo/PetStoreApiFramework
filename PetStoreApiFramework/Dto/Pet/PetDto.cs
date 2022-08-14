@@ -9,7 +9,7 @@ namespace PetStoreApiFramework.Dto
     public class PetDto
     {
         // Id of pet
-        public int? Id { get; set; }
+        public Int64? Id { get; set; }
         // Object containing pet category informations
         public PetCategoryDto Category { get; set; }
         // Pet name

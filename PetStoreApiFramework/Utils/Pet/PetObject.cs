@@ -1,5 +1,7 @@
-﻿using PetStoreApiFramework.Dto;
+﻿using FluentAssertions;
+using PetStoreApiFramework.Dto;
 using PetStoreApiFramework.Requests;
+using System;
 using System.Collections.Generic;
 using System.Net;
 
@@ -8,7 +10,7 @@ namespace PetStoreApiFramework.Utils.Pet
     public class PetObject
     {
         // Id of pet
-        public int? Id { get; set; }
+        public Int64? Id { get; set; }
         // Object containing pet category informations
         public PetCategoryDto Category { get; set; }
         // Pet name
@@ -69,9 +71,13 @@ namespace PetStoreApiFramework.Utils.Pet
             return this;
         }
 
-        public PetObject Get(HttpStatusCode statusCode = HttpStatusCode.OK)
+        public PetObject Get(HttpStatusCode statusCode = HttpStatusCode.OK, string errorMessage = null)
         {
-            RequestsPet.GetPetById(Id.GetValueOrDefault(), statusCode);
+            var response = RequestsPet.GetPetById(Id.GetValueOrDefault(), statusCode).Deserialize<ApiResponseDto>();
+            if (statusCode != HttpStatusCode.OK)
+            {
+                response.Message.Should().Be(errorMessage);
+            }
             return this;
         }
 
