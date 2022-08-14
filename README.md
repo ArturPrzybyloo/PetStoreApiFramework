@@ -1,6 +1,14 @@
 # PetStoreApiFramework
 Api testing framework created by using C#, RestSharp and NUnit.
 
+Tests are configurable from config.json file where you can add enviroment specific data.
+
+Framework are based on objects and dto's and it's deserialization.
+
+Endpoints are stored in specific Endpoints classes categorized by swagger categories.
+Requests methods are also categorized and stored in different classes.
+Tests are extended by Test Base class which loads configuration based on current enviroment.
+
 
 Framework uses Allure reports which have attached all requests/response history:
 ![image](https://user-images.githubusercontent.com/46795587/184531262-c9b72ea9-3dcd-4881-8f21-5c4903540365.png)
