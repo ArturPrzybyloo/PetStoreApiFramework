@@ -11,6 +11,7 @@ namespace PetStoreApiFramework.Tests
 {
     [AllureNUnit]
     [AllureSuite("Pet Tests")]
+    [Category("Pet Tests")]
     public class PetTests : TestBase
     {
         PetObject pet = new PetObject();
