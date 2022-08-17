@@ -48,7 +48,7 @@ namespace PetStoreApiFramework.Utils.Store
 
         public OrderObject Delete(HttpStatusCode statusCode = HttpStatusCode.OK)
         {
-            RequestsStore.DeleteOrderById(Id.GetValueOrDefault());
+            RequestsStore.DeleteOrderById(Id.GetValueOrDefault(), statusCode);
             return this;
         }
     }
