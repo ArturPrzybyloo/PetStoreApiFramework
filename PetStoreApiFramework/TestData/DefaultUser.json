@@ -1,10 +1,10 @@
 {
   "id": 0,
-  "username": "Tester",
-  "firstName": "Andrzej",
-  "lastName": "Kowalski",
-  "email": "test@test.com",
+  "username": "{{username}}",
+  "firstName": "{{name}}",
+  "lastName": "{{lastname}}",
+  "email": "{{email}}",
   "password": "pass123",
-  "phone": "666222111",
+  "phone": "{{phone}}",
   "userStatus": 1
 }
