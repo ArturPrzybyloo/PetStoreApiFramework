@@ -13,7 +13,7 @@ using System.Net;
 namespace PetStoreApiFramework.Tests
 {
     [AllureNUnit]
-    [AllureSuite("Pet Tests")]
+    [AllureSuite("Store Tests")]
     [Category ("Store Tests")]
     public class StoreTests : TestBase
     {

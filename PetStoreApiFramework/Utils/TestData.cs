@@ -33,7 +33,7 @@ namespace PetStoreApiFramework.Utils
             var variablesToReplace = new Dictionary<string, string>
             {
                 {"{{name}}", Faker.Name.First() },
-                {"{{username}}", Faker.Internet.UserName() },
+                {"{{username}}", Faker.Internet.UserName() + Faker.Name.First() },
                 {"{{lastname}}", Faker.Name.Last() },
                 {"{{email}}", Faker.Internet.Email() },
                 {"{{phone}}", Faker.Phone.Number() }
