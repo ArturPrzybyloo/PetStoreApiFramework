@@ -64,12 +64,25 @@ namespace PetStoreApiFramework.Utils.User
             return this;
         }
 
+        public UserObject Get(string userName, HttpStatusCode statusCode = HttpStatusCode.OK, string errorMessage = null)
+        {
+            var response = RequestsUser.GetUserByName(userName, statusCode);
+            if (statusCode != HttpStatusCode.OK)
+            {
+                var error = response.Deserialize<ApiResponseDto>();
+                error.Message.Should().Be(errorMessage);
+            }
+            return this;
+        }
+
         public List<UserObject> CreateUsersByList(int numberOfUsers, HttpStatusCode statusCode = HttpStatusCode.OK)
         {
             List<UserObject> users = new List<UserObject>();
             for (int i = 0; i < numberOfUsers; i++)
             {
-                users.Add(this);
+                UserObject user = new UserObject();
+                user.GetDeafult();
+                users.Add(user);
             }
             RequestsUser.CreateUsersWithList(users, statusCode);
             return users;
@@ -77,18 +90,21 @@ namespace PetStoreApiFramework.Utils.User
 
         public UserObject[] CreateUsersByArray(int numberOfUsers, HttpStatusCode statusCode = HttpStatusCode.OK)
         {
-            UserObject[] users = null;
+            List<UserObject> users = new List<UserObject>();
             for (int i = 0; i < numberOfUsers; i++)
             {
-                users.Append(this);
+                UserObject user = new UserObject();
+                user.GetDeafult();
+                users.Add(user);
             }
-            RequestsUser.CreateUsersWithArray(users, statusCode);
-            return users;
+            var usersArray = users.ToArray();
+            RequestsUser.CreateUsersWithArray(usersArray, statusCode);
+            return usersArray;
         }
 
         public UserObject Update(HttpStatusCode statusCode = HttpStatusCode.OK)
         {
-            var response = RequestsUser.UpdateUserWithName(Username, this,statusCode ).Deserialize<ApiResponseDto>();
+            var response = RequestsUser.UpdateUserWithName(Username, this, statusCode ).Deserialize<ApiResponseDto>();
             response.Type.Should().NotBe("unknown");
             return this;
         }

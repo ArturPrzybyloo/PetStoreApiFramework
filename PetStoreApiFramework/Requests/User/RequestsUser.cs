@@ -25,7 +25,7 @@ namespace PetStoreApiFramework.Requests.User
             }
         }
 
-        public static RestResponse CreateUsersWithArray(UserObject[] userDtoArray, HttpStatusCode httpStatusCode = HttpStatusCode.OK)
+        public static RestResponse CreateUsersWithArray(UserObject[]? userDtoArray, HttpStatusCode httpStatusCode = HttpStatusCode.OK)
         {
             var request = EndpointsUser.CreateUsersWithArray.AddJsonBody(userDtoArray);
 
