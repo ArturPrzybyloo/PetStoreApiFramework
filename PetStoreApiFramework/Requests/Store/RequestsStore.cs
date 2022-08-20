@@ -62,7 +62,7 @@ namespace PetStoreApiFramework.Requests.Store
 
         public static RestResponse GetInventory(HttpStatusCode httpStatusCode = HttpStatusCode.OK)
         {
-            var request = EndpointsStore.GetOrder;
+            var request = EndpointsStore.GetInventory;
 
             var response = Client.ExecuteWithLogs(request);
             response.StatusCode.Should().Be(httpStatusCode);

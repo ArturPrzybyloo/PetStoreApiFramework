@@ -7,6 +7,7 @@ using PetStoreApiFramework.Utils;
 using PetStoreApiFramework.Utils.Pet;
 using PetStoreApiFramework.Utils.Store;
 using System;
+using System.Collections.Generic;
 using System.Net;
 
 namespace PetStoreApiFramework.Tests
@@ -56,7 +57,7 @@ namespace PetStoreApiFramework.Tests
         }
 
         [TestCase]
-        [Order(2)]
+        [Order(3)]
         public void DeleteOrder()
         {
             // Create pet for further order
@@ -75,6 +76,31 @@ namespace PetStoreApiFramework.Tests
 
             // Get deleted order and verify it's deletion
             RequestsStore.GetOrderById(order.Id.GetValueOrDefault(), HttpStatusCode.NotFound);
+        }
+
+        [TestCase]
+        [Order(4)]
+        public void GetInventory()
+        {
+            // Get current inventory
+            var inventory = RequestsStore.GetInventory().Deserialize<Dictionary<string, string>>();
+            inventory.Should().NotBeNull();
+
+            // Create pets with different statuses
+            pet.GetDeafult();
+            pet.Status = "available";
+            pet.Create();
+
+            pet.Status = "pending";
+            pet.Create();
+
+            pet.Status = "sold";
+            pet.Create();
+
+            // Verify that inventory have been updated
+            Convert.ToInt32(inventory["available"]).Should().Be(Convert.ToInt32(inventory["available"]) + 1);
+            Convert.ToInt32(inventory["pending"]).Should().Be(Convert.ToInt32(inventory["pending"]) + 1);
+            Convert.ToInt32(inventory["sold"]).Should().Be(Convert.ToInt32(inventory["sold"]) + 1);
         }
     }
 }
