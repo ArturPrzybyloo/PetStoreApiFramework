@@ -1,4 +1,7 @@
 # PetStoreApiFramework
+
+Swagger documentation: https://petstore.swagger.io/
+
 Api testing framework created by using C#, RestSharp and NUnit.
 
 Tests are configurable from config.json file where you can add enviroment specific data.
