@@ -20,9 +20,6 @@ namespace PetStoreApiFramework.Tests
         [Order (1)]
         public void CreatePet()
         {
-            // Create pet object and get default data
-            pet.GetDeafult();
-
             // Prepare pet data
             pet.SetPetData("Max");
             pet.SetCategory("Labrador", 1);

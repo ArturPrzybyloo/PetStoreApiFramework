@@ -58,7 +58,7 @@ namespace PetStoreApiFramework.Tests
         public void CreateUser()
         {
             // Create user
-            user.GetDeafult().Create();
+            user.Create();
 
             // Get user and verify it's data
             var createdUser = RequestsUser.GetUserByName(user.Username).Deserialize<UserObject>();
@@ -85,7 +85,7 @@ namespace PetStoreApiFramework.Tests
         public void UpdateUser()
         {
             // Create user
-            user.GetDeafult().Create();
+            user.Create();
 
             // Prepare Data to update
             var newName = Faker.Name.FullName();
