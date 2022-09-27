@@ -22,6 +22,17 @@ namespace PetStoreApiFramework.Utils.Pet
         // Status of pet
         public string Status { get; set; }
 
+        public PetObject()
+        {
+            var defaultPet = TestData.Read<PetDto>("DefaultPet");
+            Id = defaultPet.Id;
+            Category = defaultPet.Category;
+            Name = defaultPet.Name;
+            PhotoUrls = defaultPet.PhotoUrls;
+            Tags = defaultPet.Tags;
+            Status = defaultPet.Status;
+        }
+
         public PetObject GetDeafult()
         {
             var defaultPet = TestData.Read<PetDto>("DefaultPet");

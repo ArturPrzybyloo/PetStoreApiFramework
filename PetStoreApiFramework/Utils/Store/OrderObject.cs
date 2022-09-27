@@ -21,6 +21,17 @@ namespace PetStoreApiFramework.Utils.Store
         // Order completion flag
         public bool Complete { get; set; }
 
+        public OrderObject()
+        {
+            var defaultOrder = TestData.Read<OrderDto>("DefaultOrder");
+            Id = defaultOrder.Id;
+            PetId = defaultOrder.PetId;
+            Quantity = defaultOrder.Quantity;
+            ShipDate = defaultOrder.ShipDate;
+            Status = defaultOrder.Status;
+            Complete = defaultOrder.Complete;
+        }
+
         public OrderObject GetDefault()
         {
             var defaultOrder = TestData.Read<OrderDto>("DefaultOrder");

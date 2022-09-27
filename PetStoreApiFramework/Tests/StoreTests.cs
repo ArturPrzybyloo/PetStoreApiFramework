@@ -25,7 +25,7 @@ namespace PetStoreApiFramework.Tests
         public void CreateOrder()
         {
             // Create pet for further order
-            pet.GetDeafult().Create();
+            pet.Create();
 
             // Get default order and prepare data
             order.GetDefault();
@@ -46,7 +46,7 @@ namespace PetStoreApiFramework.Tests
         public void CreateOrderWrongDateFormat()
         {
             // Create pet for further order
-            pet.GetDeafult().Create();
+            pet.Create();
 
             // Prepare order
             order.GetDefault();
@@ -61,7 +61,7 @@ namespace PetStoreApiFramework.Tests
         public void DeleteOrder()
         {
             // Create pet for further order
-            pet.GetDeafult().Create();
+            pet.Create();
 
             // Prepare order
             order.PetId = pet.Id;

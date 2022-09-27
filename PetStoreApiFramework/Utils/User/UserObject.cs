@@ -1,14 +1,10 @@
 ﻿using FluentAssertions;
-using NUnit.Framework;
 using PetStoreApiFramework.Dto;
 using PetStoreApiFramework.Dto.User;
 using PetStoreApiFramework.Requests.User;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PetStoreApiFramework.Utils.User
 {
@@ -30,6 +26,19 @@ namespace PetStoreApiFramework.Utils.User
         public string Phone { get; set; }
         // User status
         public int? UserStatus { get; set; }
+
+        public UserObject()
+        {
+            var defaultUser = TestData.Read<UserDto>("DefaultUser");
+            Id = defaultUser.Id;
+            Username = defaultUser.Username;
+            FirstName = defaultUser.FirstName;
+            LastName = defaultUser.LastName;
+            Email = defaultUser.Email;
+            Password = defaultUser.Password;
+            Phone = defaultUser.Phone;
+            UserStatus = defaultUser.UserStatus;
+        }
        
         public UserObject GetDeafult()
         {
